@@ -3,6 +3,15 @@ import '../css/Contacto.css';
 
 class Contacto extends Component
 {
+    constructor()
+    {
+        super();
+        this.prueba=this.prueba.bind(this);
+    }
+    prueba()
+    {
+        alert("le diste click!!!");
+    }
     render()
     {
         return(
@@ -19,7 +28,7 @@ class Contacto extends Component
                     <label htmlFor="Comentarios">Comentarios: </label>
                     <textarea id="Comentarios" name="Comentarios" placeholder="¡Cuéntanos, con  gusto te leeremos!"></textarea>
 
-                    <input type="submit" value="Enviar"/>
+                    <input type="submit" value="Enviar" onClick={this.prueba}/>
                 </form>
             </div> 
         );
