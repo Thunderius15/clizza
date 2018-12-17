@@ -12,13 +12,13 @@ class Inicio extends Component
     }
     saluda()
     {
-        const response = fetch('http://localhost:8080/ingredientes/');
-        const json = response.json();
-        json.array.forEach(mensaje => {
-            this.setState({
-                respuesta : mensaje.mensaje
+        fetch('http://localhost:8080/ingredientes/')
+        .then(response => response.json())
+        .then(texto => {
+             this.setState({
+                respuesta : texto.mensaje
             });
-        });
+        })
     }
     render()
     {

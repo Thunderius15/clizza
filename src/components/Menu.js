@@ -8,6 +8,7 @@ class Menu extends Component
         return(
             <div className="navbar">
                 <NavLink exact to="/" activeClassName="active">Bienvenido</NavLink>
+                <NavLink to="/Login" activeClassName="active">Login</NavLink>
                 <NavLink to="/create" activeClassName="active">¡Arma tu Pizza!</NavLink>
                 <NavLink to="/sucursales" activeClassName="active">Nuestras Sucursales</NavLink>
                 <NavLink to="/promociones" activeClassName="active"> Nuestras Promociones</NavLink>
