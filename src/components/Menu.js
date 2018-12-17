@@ -8,10 +8,11 @@ class Menu extends Component
         return(
             <div className="navbar">
                 <NavLink exact to="/" activeClassName="active">Bienvenido</NavLink>
-                <NavLink to="/nuestroMenu" activeClassName="active">¡Arma tu Pizza!</NavLink>
+                <NavLink to="/create" activeClassName="active">¡Arma tu Pizza!</NavLink>
                 <NavLink to="/sucursales" activeClassName="active">Nuestras Sucursales</NavLink>
                 <NavLink to="/promociones" activeClassName="active"> Nuestras Promociones</NavLink>
                 <NavLink to="/contacto" activeClassName="active">Contacto</NavLink>
+                <NavLink to="/registrer" activeClassName="active">Reistro</NavLink>
             </div> 
         );
     }

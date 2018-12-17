@@ -12,7 +12,7 @@ class Inicio extends Component
     }
     saluda()
     {
-        const response = await fetch('http://localhost:8080/ingredientes/');
+        const response = fetch('http://localhost:8080/ingredientes/');
         const json = response.json();
         json.array.forEach(mensaje => {
             this.setState({
