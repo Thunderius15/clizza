@@ -5,6 +5,7 @@ import Menu from './components/Menu';
 import Login from './components/Login';
 import Inicio from './components/Inicio';
 import Contacto from './components/Contacto';
+import Create from './components/Create';
 
 const routing = (
     <Router>
@@ -13,6 +14,7 @@ const routing = (
             <Route exact path="/" component={Inicio}/>
             <Route path="/Login" component={Login}/>
             <Route path="/contacto" component={Contacto}/>
+            <Route path="/create" component={Create}/>
         </div>
     </Router>
 )
