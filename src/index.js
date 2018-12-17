@@ -4,6 +4,7 @@ import {Route,BrowserRouter as Router} from 'react-router-dom';
 import Menu from './components/Menu';
 import Inicio from './components/Inicio';
 import Contacto from './components/Contacto';
+import Registrer from './components/Registrer';
 
 const routing = (
     <Router>
@@ -11,6 +12,7 @@ const routing = (
             <Menu/>
             <Route exact path="/" component={Inicio}/>
             <Route path="/contacto" component={Contacto}/>
+            <Route path="/registrer" component={Registrer}/>
         </div>
     </Router>
 )
