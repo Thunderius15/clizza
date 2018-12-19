@@ -4,7 +4,7 @@ public class InfoData {
 	private String name;
 	private String email;
 	private String username;
-	private int phone;
+	private String phone;
 	//private String direction;
 	private String password;
 	
@@ -12,7 +12,7 @@ public class InfoData {
 	{
 		
 	}
-	public InfoData (String name, String email, String username, int phone, String password)
+	public InfoData (String name, String email, String username, String phone, String password)
 	{
 		setName(name);
 		setEmail(email);
@@ -21,11 +21,11 @@ public class InfoData {
 		//setDirection(direction);
 		setPassword(password);
 	}
-	public int getPhone()
+	public String getPhone()
 	{
 		return phone;
 	}
-	public void setPhone(int phone)
+	public void setPhone(String phone)
 	{
 		this.phone = phone;
 	}

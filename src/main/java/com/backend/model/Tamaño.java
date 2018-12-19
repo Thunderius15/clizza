@@ -1,13 +1,13 @@
 package com.backend.model;
 
-public class Tamaños {
+public class Tamaño {
 	private int idTamaños;
 	private String tamaño;
 	
-	public Tamaños()
+	public Tamaño()
 	{
 	}
-	public Tamaños(int idTamaños, String tamaño)
+	public Tamaño(int idTamaños, String tamaño)
 	{
 		setIdTamaños(idTamaños);
 		setTamaño(tamaño);
