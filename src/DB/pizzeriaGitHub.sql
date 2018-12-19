@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: localhost    Database: pizzeria
 -- ------------------------------------------------------
--- Server version	8.0.11
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `categorias` (
-  `idCategoria` int(11) NOT NULL,
+  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,8 +35,32 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (481,'Salsa'),(482,'Queso'),(483,'Carne'),(484,'Vegetal'),(485,'Fruta');
+INSERT INTO `categorias` VALUES (481,'Salsa'),(482,'Queso'),(483,'Carne'),(484,'Vegetal'),(485,'Fruta'),(486,'Masa');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `descuentos`
+--
+
+DROP TABLE IF EXISTS `descuentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `descuentos` (
+  `idDescuentos` int(11) NOT NULL AUTO_INCREMENT,
+  `descuento` decimal(2,2) NOT NULL,
+  PRIMARY KEY (`idDescuentos`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `descuentos`
+--
+
+LOCK TABLES `descuentos` WRITE;
+/*!40000 ALTER TABLE `descuentos` DISABLE KEYS */;
+INSERT INTO `descuentos` VALUES (101,0.10),(102,0.15),(103,0.05),(104,0.20);
+/*!40000 ALTER TABLE `descuentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -47,7 +71,7 @@ DROP TABLE IF EXISTS `direccionesusuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `direccionesusuario` (
-  `idDireccionesUsuario` int(11) NOT NULL,
+  `idDireccionesUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` varchar(20) DEFAULT NULL,
   `nombreCalle` varchar(20) DEFAULT NULL,
   `numeroExt` varchar(10) DEFAULT NULL,
@@ -60,7 +84,7 @@ CREATE TABLE `direccionesusuario` (
   `estado` varchar(30) DEFAULT NULL,
   `alias` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idDireccionesUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,13 +104,13 @@ DROP TABLE IF EXISTS `ingredientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `ingredientes` (
-  `idIngrediente` int(11) NOT NULL,
+  `idIngrediente` int(11) NOT NULL AUTO_INCREMENT,
   `nombreIngrediente` varchar(20) DEFAULT NULL,
   `categoriaIngrediente` varchar(20) DEFAULT NULL,
   `activo` int(11) DEFAULT NULL,
   `nombreImagen` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idIngrediente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,8 +119,32 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES (101,'Cebolla','484',0,'No Encontrado'),(102,'Champiñón','484',1,'Champiñones.png'),(103,'Aceituna','484',0,'No Encontrado'),(104,'Calabacin','484',0,'No Encontrado'),(105,'Brocoli','484',0,'No Encontrado'),(106,'Papa','484',0,'No Encontrado'),(107,'Pepino','484',0,'No Encontrado'),(108,'Zanahoria','484',0,'No Encontrado'),(109,'Espinaca','484',0,'No Encontrado'),(110,'Aguacate','484',0,'No Encontrado'),(111,'Ajo','484',0,'No Encontrado'),(112,'Pimiento rojo','484',0,'No Encontrado'),(113,'Pimiento verde','484',0,'No Encontrado'),(114,'Lechuga','484',0,'No Encontrado'),(115,'Esparragos','484',0,'No Encontrado'),(116,'Elote','484',0,'No Encontrado'),(121,'Mango','485',0,'No Encontrado'),(122,'Fresa','485',1,'Frutas.png'),(123,'Naranja','485',0,'No Encontrado'),(124,'Platano','485',0,'No Encontrado'),(125,'Manzana','485',0,'No Encontrado'),(126,'Kiwi','485',0,'Frutas.png'),(127,'Piña','485',0,'No Encontrado'),(128,'Sandia','485',0,'No Encontrado'),(129,'Papaya','485',0,'No Encontrado'),(130,'Durazno','485',0,'No Encontrado'),(131,'Uva','485',0,'No Encontrado'),(132,'Limon','485',0,'No Encontrado'),(133,'Pera','485',0,'No Encontrado'),(501,'Pomodoro','481',1,'SalsaPerrona.png'),(502,'Bolognesa','481',0,'No Encontrado'),(503,'Cheddar','481',0,'No Encontrado'),(504,'Barbacoa Casera','481',0,'No Encontrado'),(505,'Mexicana','481',0,'No Encontrado'),(506,'Secreta','481',0,'No Encontrado'),(507,'Chiles','481',0,'No Encontrado'),(508,'Dulce','481',0,'No Encontrado'),(520,'Mozzarella','482',1,'Quesillo.png'),(521,'Cheddar','482',0,'No Encontrado'),(522,'Colby','482',0,'No Encontrado'),(523,'Edam','482',0,'No Encontrado'),(524,'Emmental','482',0,'No Encontrado'),(525,'Gruyere','482',0,'No Encontrado'),(526,'Provolone','482',0,'No Encontrado'),(527,'Suizo','482',0,'No Encontrado'),(528,'Gouda','482',0,'No Encontrado'),(529,'Cabra','482',0,'No Encontrado'),(530,'Manchego','482',0,'No Encontrado'),(540,'Peperoni','483',1,'Pepperoni.png'),(541,'Salami','483',0,'No Encontrado'),(542,'Salchica','483',0,'No Encontrado'),(543,'Jamón de Pavo','483',0,'No Encontrado'),(544,'Chorizo','483',1,'Chorizo.png'),(545,'Carne Molida','483',1,'CarneMolida.png'),(546,'Jamón Selva Negra','483',0,'No Encontrado'),(547,'Jamón Serrano','483',0,'No Encontrado'),(548,'Camarón','483',0,'No Encontrado');
+INSERT INTO `ingredientes` VALUES (101,'Cebolla','484',0,'No Encontrado'),(102,'Champiñón','484',1,'Champiñones.png'),(103,'Aceituna','484',0,'No Encontrado'),(104,'Calabacin','484',0,'No Encontrado'),(105,'Brocoli','484',0,'No Encontrado'),(106,'Papa','484',0,'No Encontrado'),(107,'Pepino','484',0,'No Encontrado'),(108,'Zanahoria','484',0,'No Encontrado'),(109,'Espinaca','484',0,'No Encontrado'),(110,'Aguacate','484',0,'No Encontrado'),(111,'Ajo','484',0,'No Encontrado'),(112,'Pimiento rojo','484',0,'No Encontrado'),(113,'Pimiento verde','484',0,'No Encontrado'),(114,'Lechuga','484',0,'No Encontrado'),(115,'Esparragos','484',0,'No Encontrado'),(116,'Elote','484',0,'No Encontrado'),(117,'Carne Molida','483',1,'CarneMolida.png'),(118,'Jamón Selva Negra','483',0,'No Encontrado'),(119,'Jamón Serrano','483',0,'No Encontrado'),(120,'Camarón','483',0,'No Encontrado'),(121,'Mango','485',0,'No Encontrado'),(122,'Fresa','485',1,'Frutas.png'),(123,'Naranja','485',0,'No Encontrado'),(124,'Platano','485',0,'No Encontrado'),(125,'Manzana','485',0,'No Encontrado'),(126,'Kiwi','485',0,'Frutas.png'),(127,'Piña','485',0,'No Encontrado'),(128,'Sandia','485',0,'No Encontrado'),(129,'Papaya','485',0,'No Encontrado'),(130,'Durazno','485',0,'No Encontrado'),(131,'Uva','485',0,'No Encontrado'),(132,'Limon','485',0,'No Encontrado'),(133,'Pera','485',0,'No Encontrado'),(134,'Pomodoro','481',1,'SalsaPerrona.png'),(135,'Bolognesa','481',0,'No Encontrado'),(136,'Cheddar','481',0,'No Encontrado'),(137,'Barbacoa Casera','481',0,'No Encontrado'),(138,'Mexicana','481',0,'No Encontrado'),(139,'Secreta','481',0,'No Encontrado'),(140,'Chiles','481',0,'No Encontrado'),(141,'Dulce','481',0,'No Encontrado'),(142,'Mozzarella','482',1,'Quesillo.png'),(143,'Cheddar','482',0,'No Encontrado'),(144,'Colby','482',0,'No Encontrado'),(145,'Edam','482',0,'No Encontrado'),(146,'Emmental','482',0,'No Encontrado'),(147,'Gruyere','482',0,'No Encontrado'),(148,'Provolone','482',0,'No Encontrado'),(149,'Suizo','482',0,'No Encontrado'),(150,'Gouda','482',0,'No Encontrado'),(151,'Cabra','482',0,'No Encontrado'),(152,'Manchego','482',0,'No Encontrado'),(153,'Peperoni','483',1,'Pepperoni.png'),(154,'Salami','483',0,'No Encontrado'),(155,'Salchica','483',0,'No Encontrado'),(156,'Jamón de Pavo','483',0,'No Encontrado'),(157,'Chorizo','483',1,'Chorizo.png'),(158,'Original','486',1,'Masa_Original.png'),(159,'Queso','486',1,'Masa_Queso.png'),(160,'Sarten','486',1,'Masa_Sarten.png');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ingredientespromociones`
+--
+
+DROP TABLE IF EXISTS `ingredientespromociones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `ingredientespromociones` (
+  `idIngredientesPromociones` int(11) NOT NULL AUTO_INCREMENT,
+  `idPromocion` int(11) NOT NULL,
+  `idIngrediente` int(11) NOT NULL,
+  PRIMARY KEY (`idIngredientesPromociones`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ingredientespromociones`
+--
+
+LOCK TABLES `ingredientespromociones` WRITE;
+/*!40000 ALTER TABLE `ingredientespromociones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingredientespromociones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -107,12 +155,12 @@ DROP TABLE IF EXISTS `precioportamaño`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `precioportamaño` (
-  `idPrecio` int(11) NOT NULL,
+  `idPrecio` int(11) NOT NULL AUTO_INCREMENT,
   `idTamañoPizza` int(11) DEFAULT NULL,
   `idIngrediente` int(11) DEFAULT NULL,
   `precioSegunTamaño` int(11) DEFAULT NULL,
   PRIMARY KEY (`idPrecio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,6 +174,33 @@ INSERT INTO `precioportamaño` VALUES (601,491,501,3),(602,492,501,5),(603,493,5
 UNLOCK TABLES;
 
 --
+-- Table structure for table `promociones`
+--
+
+DROP TABLE IF EXISTS `promociones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `promociones` (
+  `idPromocion` int(11) NOT NULL AUTO_INCREMENT,
+  `nombrePromocion` varchar(45) NOT NULL,
+  `idTamaño` int(11) NOT NULL,
+  `idDescuento` int(11) NOT NULL,
+  `idTemporada` int(11) NOT NULL,
+  PRIMARY KEY (`idPromocion`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `promociones`
+--
+
+LOCK TABLES `promociones` WRITE;
+/*!40000 ALTER TABLE `promociones` DISABLE KEYS */;
+INSERT INTO `promociones` VALUES (101,'Pizza Navideña',493,102,104),(102,'Pizza Buen Fin',493,101,103);
+/*!40000 ALTER TABLE `promociones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sucursal`
 --
 
@@ -133,13 +208,13 @@ DROP TABLE IF EXISTS `sucursal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `sucursal` (
-  `idSucursal` int(11) NOT NULL,
+  `idSucursal` int(11) NOT NULL AUTO_INCREMENT,
   `nombreSucursal` varchar(20) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,
   `ubicacion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idSucursal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=904 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,11 +235,11 @@ DROP TABLE IF EXISTS `tamaños`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `tamaños` (
-  `idTamaños` int(11) NOT NULL,
+  `idTamaños` int(11) NOT NULL AUTO_INCREMENT,
   `tamaño` varchar(20) DEFAULT NULL,
   `activo` int(11) DEFAULT NULL,
   PRIMARY KEY (`idTamaños`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=494 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,6 +253,32 @@ INSERT INTO `tamaños` VALUES (491,'Chico',1),(492,'Mediano',1),(493,'Grande',1)
 UNLOCK TABLES;
 
 --
+-- Table structure for table `temporadas`
+--
+
+DROP TABLE IF EXISTS `temporadas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `temporadas` (
+  `idTemporadas` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreTemporada` varchar(45) NOT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  PRIMARY KEY (`idTemporadas`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `temporadas`
+--
+
+LOCK TABLES `temporadas` WRITE;
+/*!40000 ALTER TABLE `temporadas` DISABLE KEYS */;
+INSERT INTO `temporadas` VALUES (101,'Año Nuevo','2019-01-01','2019-01-31'),(102,'San Valentin','2019-02-11','2019-02-19'),(103,'Buen Fin','2018-11-26','2018-12-26'),(104,'Navideña','2018-12-01','2018-12-31');
+/*!40000 ALTER TABLE `temporadas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -185,14 +286,13 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombreUsuario` varchar(20) DEFAULT NULL,
   `correo` varchar(30) DEFAULT NULL,
   `contraseña` varchar(20) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-06 13:34:21
+-- Dump completed on 2018-12-19 13:22:59
