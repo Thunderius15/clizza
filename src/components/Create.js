@@ -9,10 +9,13 @@ class Create extends Component
         this.state = {
             tamaños : [],
             ingredientes : [],
-            ingredientesPizza : [],
             tamañoPizza : 0,
             masaPizza : 0,
-            salsaPizza : 0
+            imagenMasaPizza : "",
+            salsaPizza : 0,
+            imagenSalsaPizza : "",
+            ingredientesPizza : [],
+            imagenesIngredientesPizza : []
         }
         this.cambioTamaño=this.cambioTamaño.bind(this);
         this.cambioMasa=this.cambioMasa.bind(this);
@@ -44,7 +47,8 @@ class Create extends Component
                 if(ingrediente.categoriaIngrediente==="Masa"){
                     masa=1;
                     this.setState({
-                        masaPizza: ingrediente.idIngrediente
+                        masaPizza: ingrediente.idIngrediente,
+                        imagenMasaPizza: ingrediente.nombreImagen
                     })
                 }
             }
@@ -54,7 +58,8 @@ class Create extends Component
                 if(ingrediente.categoriaIngrediente==="Salsa"){
                     salsa=1;
                     this.setState({
-                        salsaPizza: ingrediente.idIngrediente
+                        salsaPizza: ingrediente.idIngrediente,
+                        imagenSalsaPizza: ingrediente.nombreImagen
                     })
                 }
             }
@@ -66,17 +71,32 @@ class Create extends Component
         });
     }
     cambioMasa(e){
+        var nombreImagen="logo/clizzaLOGOsolo.png";
+        this.state.ingredientes.forEach(function(ingrediente){
+            if(ingrediente.idIngrediente==e.target.value){
+                nombreImagen=ingrediente.nombreImagen;
+            }
+        });
         this.setState({
-            masaPizza: e.target.value
+            masaPizza: e.target.value,
+            imagenMasaPizza: nombreImagen
         });
     }
     cambioSalsa(e){
+        var nombreImagen="logo/clizzaLOGOsolo.png";
+        this.state.ingredientes.forEach(function(ingrediente){
+            if(ingrediente.idIngrediente==e.target.value){
+                nombreImagen=ingrediente.nombreImagen;
+            }
+        });
         this.setState({
-            salsaPizza: e.target.value
+            salsaPizza: e.target.value,
+            imagenSalsaPizza: nombreImagen
         });
     }
     cambioIngrediente(){
         var arregloIngredientes = [];
+        var arregloImagenesIngredientes = [];
         var ingredientes=document.getElementsByClassName("ingrediente");
         for(var i=0; i<ingredientes.length; i++)
         {
@@ -85,8 +105,16 @@ class Create extends Component
                 arregloIngredientes.push(ingredientes[i].value);
             }
         }
+        for(i=0; i<arregloIngredientes.length; i++){
+            this.state.ingredientes.forEach(function(ingrediente){
+                if(ingrediente.idIngrediente==arregloIngredientes[i]){
+                    arregloImagenesIngredientes.push(ingrediente.nombreImagen);
+                }
+            });
+        }
         this.setState({
-            ingredientesPizza: arregloIngredientes
+            ingredientesPizza: arregloIngredientes,
+            imagenesIngredientesPizza: arregloImagenesIngredientes
         })
     }
     render()
@@ -189,23 +217,31 @@ class Create extends Component
                 <div key={i}>{ingrediente}</div>
             );
         })
-        var nombreImagen="Frutas.png"
-        var imagen = require("../images/"+nombreImagen);
-        const pizza = 
+        var nombreImagenMasa="logo/clizzaLOGOsolo.png";
+        if(this.state.imagenMasaPizza!==""){
+            nombreImagenMasa=this.state.imagenMasaPizza;
+        }
+        var nombreImagenSalsa="logo/clizzaLOGOsolo.png";
+        if(this.state.imagenSalsaPizza!==""){
+            nombreImagenSalsa=this.state.imagenSalsaPizza;
+        }
+        const imagenesOtrosIngredientes = this.state.imagenesIngredientesPizza.map((ingrediente,i)=>{
+            return(
+                <img src={require("../images/"+ingrediente)} key={i}></img>
+            );
+        });
+        const pizza=
             <div>
-                <img src={imagen}></img>
-            </div>
+                <img src={require("../images/"+nombreImagenMasa)}></img>
+                <img src={require("../images/"+nombreImagenSalsa)}></img>
+                {imagenesOtrosIngredientes}
+            </div>;
         return(
             <div>
                 {tamaños}
                 {masas}
                 {salsas}
                 {otros}
-                "Tamaño"+{this.state.tamañoPizza}
-                "Masa"+{this.state.masaPizza}
-                "Salsa"+{this.state.salsaPizza}
-                <div>Pizza</div>
-                {elemento}
                 {pizza}
             </div> 
         );
