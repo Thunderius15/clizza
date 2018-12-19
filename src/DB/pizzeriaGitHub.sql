@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `categorias` (
-  `idCategoria` int(11) NOT NULL,
+  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,30 @@ INSERT INTO `categorias` VALUES (481,'Salsa'),(482,'Queso'),(483,'Carne'),(484,'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `descuentos`
+--
+
+DROP TABLE IF EXISTS `descuentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `descuentos` (
+  `idDescuentos` int(11) NOT NULL AUTO_INCREMENT,
+  `descuento` decimal(2,2) NOT NULL,
+  PRIMARY KEY (`idDescuentos`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `descuentos`
+--
+
+LOCK TABLES `descuentos` WRITE;
+/*!40000 ALTER TABLE `descuentos` DISABLE KEYS */;
+INSERT INTO `descuentos` VALUES (101,0.10),(102,0.15),(103,0.05),(104,0.20);
+/*!40000 ALTER TABLE `descuentos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `direccionesusuario`
 --
 
@@ -47,7 +71,7 @@ DROP TABLE IF EXISTS `direccionesusuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `direccionesusuario` (
-  `idDireccionesUsuario` int(11) NOT NULL,
+  `idDireccionesUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` varchar(20) DEFAULT NULL,
   `nombreCalle` varchar(20) DEFAULT NULL,
   `numeroExt` varchar(10) DEFAULT NULL,
@@ -60,7 +84,7 @@ CREATE TABLE `direccionesusuario` (
   `estado` varchar(30) DEFAULT NULL,
   `alias` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idDireccionesUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,13 +104,13 @@ DROP TABLE IF EXISTS `ingredientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `ingredientes` (
-  `idIngrediente` int(11) NOT NULL,
+  `idIngrediente` int(11) NOT NULL AUTO_INCREMENT,
   `nombreIngrediente` varchar(20) DEFAULT NULL,
   `categoriaIngrediente` varchar(20) DEFAULT NULL,
   `activo` int(11) DEFAULT NULL,
   `nombreImagen` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idIngrediente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,6 +124,30 @@ INSERT INTO `ingredientes` VALUES (101,'Cebolla','484',0,'No Encontrado'),(102,'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ingredientespromociones`
+--
+
+DROP TABLE IF EXISTS `ingredientespromociones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `ingredientespromociones` (
+  `idIngredientesPromociones` int(11) NOT NULL AUTO_INCREMENT,
+  `idPromocion` int(11) NOT NULL,
+  `idIngrediente` int(11) NOT NULL,
+  PRIMARY KEY (`idIngredientesPromociones`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ingredientespromociones`
+--
+
+LOCK TABLES `ingredientespromociones` WRITE;
+/*!40000 ALTER TABLE `ingredientespromociones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingredientespromociones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `precioportamaño`
 --
 
@@ -107,12 +155,12 @@ DROP TABLE IF EXISTS `precioportamaño`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `precioportamaño` (
-  `idPrecio` int(11) NOT NULL,
+  `idPrecio` int(11) NOT NULL AUTO_INCREMENT,
   `idTamañoPizza` int(11) DEFAULT NULL,
   `idIngrediente` int(11) DEFAULT NULL,
   `precioSegunTamaño` int(11) DEFAULT NULL,
   PRIMARY KEY (`idPrecio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,6 +174,33 @@ INSERT INTO `precioportamaño` VALUES (601,491,501,3),(602,492,501,5),(603,493,5
 UNLOCK TABLES;
 
 --
+-- Table structure for table `promociones`
+--
+
+DROP TABLE IF EXISTS `promociones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `promociones` (
+  `idPromocion` int(11) NOT NULL AUTO_INCREMENT,
+  `nombrePromocion` varchar(45) NOT NULL,
+  `idTamaño` int(11) NOT NULL,
+  `idDescuento` int(11) NOT NULL,
+  `idTemporada` int(11) NOT NULL,
+  PRIMARY KEY (`idPromocion`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `promociones`
+--
+
+LOCK TABLES `promociones` WRITE;
+/*!40000 ALTER TABLE `promociones` DISABLE KEYS */;
+INSERT INTO `promociones` VALUES (101,'Pizza Navideña',493,102,104),(102,'Pizza Buen Fin',493,101,103);
+/*!40000 ALTER TABLE `promociones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sucursal`
 --
 
@@ -133,13 +208,13 @@ DROP TABLE IF EXISTS `sucursal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `sucursal` (
-  `idSucursal` int(11) NOT NULL,
+  `idSucursal` int(11) NOT NULL AUTO_INCREMENT,
   `nombreSucursal` varchar(20) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,
   `ubicacion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idSucursal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=904 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,11 +235,11 @@ DROP TABLE IF EXISTS `tamaños`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `tamaños` (
-  `idTamaños` int(11) NOT NULL,
+  `idTamaños` int(11) NOT NULL AUTO_INCREMENT,
   `tamaño` varchar(20) DEFAULT NULL,
   `activo` int(11) DEFAULT NULL,
   PRIMARY KEY (`idTamaños`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=494 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,6 +253,32 @@ INSERT INTO `tamaños` VALUES (491,'Chico',1),(492,'Mediano',1),(493,'Grande',1)
 UNLOCK TABLES;
 
 --
+-- Table structure for table `temporadas`
+--
+
+DROP TABLE IF EXISTS `temporadas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `temporadas` (
+  `idTemporadas` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreTemporada` varchar(45) NOT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  PRIMARY KEY (`idTemporadas`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `temporadas`
+--
+
+LOCK TABLES `temporadas` WRITE;
+/*!40000 ALTER TABLE `temporadas` DISABLE KEYS */;
+INSERT INTO `temporadas` VALUES (101,'Año Nuevo','2019-01-01','2019-01-31'),(102,'San Valentin','2019-02-11','2019-02-19'),(103,'Buen Fin','2018-11-26','2018-12-26'),(104,'Navideña','2018-12-01','2018-12-31');
+/*!40000 ALTER TABLE `temporadas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -185,14 +286,13 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombreUsuario` varchar(20) DEFAULT NULL,
   `correo` varchar(30) DEFAULT NULL,
   `contraseña` varchar(20) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,
-  `direccion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-17 14:01:55
+-- Dump completed on 2018-12-19 13:22:59
