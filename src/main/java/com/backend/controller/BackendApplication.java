@@ -153,7 +153,61 @@ public class BackendApplication {
 		json.addProperty("precio", precio);
 		return json.toString();
 	}
-	
+	//Registro de usuario
+	@RequestMapping("/RagistrerInfo")
+	String InfoData(@RequestParam("name")String name,
+			@RequestParam("email") String email,
+			@RequestParam("username")String username,
+			@RequestParam("phone")String phone,
+			@RequestParam("direction")String direction,
+			@RequestParam("password")String password){
+		
+		InputStream input = getClass().getClassLoader().getResourceAsStream("sql.properties");
+		Properties props = new Properties();
+		Connection conn = null;
+		PreparedStatement pstmnt = null;
+		int datos = 0;
+		String mensaje ="";
+		
+		try
+		{
+			
+			props.load(input);
+			String InsertRegistro = props.getProperty("InsertRegistro");
+			Conector conector = Conector.getConector();
+			conn = conector.getConexion();
+			pstmnt = conn.prepareStatement(InsertRegistro);
+			pstmnt.setString(1, name);
+			pstmnt.setString(2, email);
+			pstmnt.setString(3, password);
+			pstmnt.setString(4, phone);
+			
+			datos = pstmnt.executeUpdate();
+			if(datos != 0)
+			{
+				mensaje = "usuario registrado al cien";
+			}else
+			{
+				mensaje = "tronó como ejote";
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try{
+				pstmnt.close();
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
+		}
+		JsonObject objeto = new JsonObject();
+		objeto.addProperty("contenido", mensaje);
+		return objeto.toString();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
