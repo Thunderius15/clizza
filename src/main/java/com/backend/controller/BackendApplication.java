@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.model.Conector;
@@ -30,7 +31,7 @@ public class BackendApplication {
 		objeto.addProperty("mensaje", "Hello World!");
 		return objeto.toString();
 	}
-	//create pizza
+	//Retorna los tamaños activos de la base de datos
 	@RequestMapping("/tamaños")
 	String tamaños() {
 		Conector conector = Conector.getConector();
@@ -70,6 +71,7 @@ public class BackendApplication {
 		String json = gson.toJson(lista);
 		return json;
 	}
+	//Retorna los ingredientes activos de la base de datos
 	@RequestMapping("/ingredientes")
 	String ingredientes() {
 		Conector conector = Conector.getConector();
@@ -108,6 +110,48 @@ public class BackendApplication {
 		Gson gson = new Gson();
 		String json = gson.toJson(lista);
 		return json;
+	}
+	//Retorna los tamaños activos de la base de datos
+	@RequestMapping("/precioIngrediente")
+	String precioIngrediente(@RequestParam("idTamaño") int idTamaño, @RequestParam("idIngrediente") int idIngrediente) {
+		Conector conector = Conector.getConector();
+		Connection conn = null;
+		PreparedStatement pstmnt = null;
+		ResultSet datos = null;
+		int precio=0;
+		try
+		{
+			Properties props = new Properties();
+			InputStream input = getClass().getClassLoader().getResourceAsStream("sql.properties");
+			props.load(input);
+			String selectPrecioIngrediente = props.getProperty("selectPrecioIngrediente");
+			conn = conector.getConexion();
+			pstmnt = conn.prepareStatement(selectPrecioIngrediente);
+			pstmnt.setInt(1, idTamaño);
+			pstmnt.setInt(2, idIngrediente);
+			datos = pstmnt.executeQuery();
+			while(datos.next())
+			{
+				precio=datos.getInt("precioSegunTamaño");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try {
+				datos.close();
+				pstmnt.close();
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
+		}
+		JsonObject json = new JsonObject();
+		json.addProperty("precio", precio);
+		return json.toString();
 	}
 	
 	public static void main(String[] args) {
