@@ -172,23 +172,27 @@ class Create extends Component
     render()
     {
         const tamaños = 
-            <fieldset>
+            <fieldset className="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <legend>Tamaños</legend>
                 {this.state.tamaños.map((tamaño,i) => {
                     if(i===0){
                         return(
-                            <label key={i}>
+                            <div>
                                 <input type="radio" name="tamaño" value={tamaño.idTamaños} onChange={this.cambioTamaño} defaultChecked/>
-                                {tamaño.tamaño}
-                            </label>
+                                <label key={i} class="form-check-label" htmlFor="tamaño">
+                                    {tamaño.tamaño}
+                                </label>
+                            </div>
                         );
                     }
                     else{
                         return(
-                            <label key={i}>
+                            <div>
                                 <input type="radio" name="tamaño" value={tamaño.idTamaños} onChange={this.cambioTamaño}/>
-                                {tamaño.tamaño}
-                            </label>
+                                <label key={i} class="form-check-label" htmlFor="tamaño">
+                                    {tamaño.tamaño}
+                                </label>
+                            </div>
                         );
                     }
                 })}
@@ -196,23 +200,29 @@ class Create extends Component
 
         var cont=0;
         const masas = 
-            <fieldset>
+            <fieldset className="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <legend>Masas</legend>
                 {this.state.ingredientes.map((masa,i) => {
                     if(masa.categoriaIngrediente==="Masa"){
                         if(cont===0){
                             cont=1;
                             return(
-                                <label key={i}>
-                                    <input type="radio" name="masa" value={masa.idIngrediente} onChange={this.cambioMasa} defaultChecked/> {masa.nombreIngrediente}
-                                </label>
+                                <div>
+                                    <input type="radio"name="masa" value={masa.idIngrediente} onChange={this.cambioMasa} defaultChecked/>
+                                    <label key={i} class="form-check-label" htmlFor="masa">
+                                        {masa.nombreIngrediente}
+                                    </label>
+                                </div>
                             );
                         }
                         else{
                             return(
-                                <label key={i}>
-                                    <input type="radio" name="masa" value={masa.idIngrediente} onChange={this.cambioMasa}/> {masa.nombreIngrediente}
-                                </label>
+                                <div>
+                                    <input type="radio" name="masa" value={masa.idIngrediente} onChange={this.cambioMasa}/>
+                                    <label key={i} class="form-check-label" htmlFor="masa">
+                                        {masa.nombreIngrediente}
+                                    </label>
+                                </div>
                             );
                         }
                     }    
@@ -221,23 +231,29 @@ class Create extends Component
 
         cont=0;
         const salsas = 
-            <fieldset>
+            <fieldset className="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <legend>Salsas</legend>
                 {this.state.ingredientes.map((salsa,i) => {
                     if(salsa.categoriaIngrediente==="Salsa"){
                         if(cont===0){
                             cont=1;
                             return(
-                                <label key={i}>
-                                    <input type="radio" name="salsa" value={salsa.idIngrediente} onChange={this.cambioSalsa} defaultChecked/> {salsa.nombreIngrediente}
-                                </label>
+                                <div>
+                                    <input type="radio" name="masa" value={salsa.idIngrediente} onChange={this.cambioSalsa} defaultChecked/>
+                                    <label key={i} class="form-check-label" htmlFor="salsa">
+                                        {salsa.nombreIngrediente}
+                                    </label>
+                                </div>
                             );
                         }
                         else{
                             return(
-                                <label key={i}>
-                                    <input type="radio" name="salsa" value={salsa.idIngrediente} onChange={this.cambioSalsa}/> {salsa.nombreIngrediente}
-                                </label>
+                                <div>
+                                    <input type="radio" name="masa" value={salsa.idIngrediente} onChange={this.cambioSalsa}/>
+                                    <label key={i} class="form-check-label" htmlFor="salsa">
+                                        {salsa.nombreIngrediente}
+                                    </label>
+                                </div>
                             );
                         }
                     }    
@@ -249,14 +265,17 @@ class Create extends Component
             if(ingrediente.categoriaIngrediente!=="Masa" && ingrediente.categoriaIngrediente!=="Salsa" && ingrediente.categoriaIngrediente!==tipo){
                 tipo=ingrediente.categoriaIngrediente;
                 return(
-                    <fieldset key={i}>
+                    <fieldset key={i} className="form-group  col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <legend>{tipo}</legend>
                         {this.state.ingredientes.map((otro,j) => {
                             if(otro.categoriaIngrediente===tipo){
                                 return(
-                                    <label key={j}>
-                                        <input type="checkbox" name={otro.categoriaIngrediente} value={otro.idIngrediente} className="ingrediente" onChange={this.cambioIngrediente}/> {otro.nombreIngrediente}
-                                    </label>
+                                    <div>
+                                        <input type="checkbox" name="masa" value={otro.idIngrediente} className="ingrediente" onChange={this.cambioIngrediente}/>
+                                        <label key={j} class="form-check-label" htmlFor={otro.categoriaIngrediente}>
+                                            {otro.nombreIngrediente}
+                                        </label>
+                                    </div>
                                 );
                             }    
                         })}
@@ -274,25 +293,40 @@ class Create extends Component
         }
         const imagenesOtrosIngredientes = this.state.imagenesIngredientesPizza.map((ingrediente,i)=>{
             return(
-                <img src={require("../images/"+ingrediente)} key={i} class="imagenPizza"></img>
+                <img src={require("../images/"+ingrediente)} key={i} className="imagenPizza"></img>
             );
         });
         const pizza=
             <div>
-                <img src={require("../images/"+nombreImagenMasa)} class="imagenPizza"></img>
-                <img src={require("../images/"+nombreImagenSalsa)} class="imagenPizza"></img>
+                <img src={require("../images/"+nombreImagenMasa)} className="imagenPizza"></img>
+                <img src={require("../images/"+nombreImagenSalsa)} className="imagenPizza"></img>
                 {imagenesOtrosIngredientes}
             </div>;
         const precioPizza = 
             <div>{this.state.precioPizza}</div>
         return(
-            <div>
-                {tamaños}
-                {masas}
-                {salsas}
-                {otros}
-                {pizza}
-                {precioPizza}
+            <div className="row">
+                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 fondo">
+                    <div className="row">
+                        {tamaños}
+                        {masas}
+                        {salsas}
+                    </div>
+                    <div className="row">
+                        {otros}
+                    </div>
+                </div>
+                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div className="row">
+                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        </div>
+                        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            {pizza}
+                        </div>
+                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        </div>
+                    </div>
+                </div>
             </div> 
         );
     }

@@ -1,4 +1,7 @@
-.imagenPizza
-{
+.fondo{
+    background-color: #ffffff66;
+}
+.imagenPizza{
     position: absolute;
+    height: 50vh;
 }
