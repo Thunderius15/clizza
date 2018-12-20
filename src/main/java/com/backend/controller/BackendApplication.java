@@ -161,17 +161,17 @@ public class BackendApplication {
 			@RequestParam("phone")String phone,
 			@RequestParam("direction")String direction,
 			@RequestParam("password")String password){
-		
+
 		InputStream input = getClass().getClassLoader().getResourceAsStream("sql.properties");
 		Properties props = new Properties();
 		Connection conn = null;
 		PreparedStatement pstmnt = null;
 		int datos = 0;
 		String mensaje ="";
-		
+
 		try
 		{
-			
+
 			props.load(input);
 			String InsertRegistro = props.getProperty("InsertRegistro");
 			Conector conector = Conector.getConector();
@@ -181,7 +181,7 @@ public class BackendApplication {
 			pstmnt.setString(2, email);
 			pstmnt.setString(3, password);
 			pstmnt.setString(4, phone);
-			
+
 			datos = pstmnt.executeUpdate();
 			if(datos != 0)
 			{
