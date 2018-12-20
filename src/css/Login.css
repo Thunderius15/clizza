@@ -1,8 +1,4 @@
-html {
-  height: 100%;
-}
-
-body {
+#logincillo {
   display: flex;
   flex-direction: column;
   justify-content: center;
