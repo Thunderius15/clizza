@@ -15,7 +15,8 @@ class Create extends Component
             salsaPizza : 0,
             imagenSalsaPizza : "",
             ingredientesPizza : [],
-            imagenesIngredientesPizza : []
+            imagenesIngredientesPizza : [],
+            precioPizza : 0
         }
         this.cambioTamaño=this.cambioTamaño.bind(this);
         this.cambioMasa=this.cambioMasa.bind(this);
@@ -25,6 +26,7 @@ class Create extends Component
     async componentDidMount(){
         var masa=0;
         var salsa=0;
+        var precio=0;
         await fetch('http://localhost:8080/tamaños')
         .then(response => response.json())
         .then((tamaño) => {
@@ -50,6 +52,13 @@ class Create extends Component
                         masaPizza: ingrediente.idIngrediente,
                         imagenMasaPizza: ingrediente.nombreImagen
                     })
+                    /*await fetch('http://localhost:8080/precioIngrediente?idTamaño')
+                    .then(response => response.json())
+                    .then((ingrediente) => {
+                        this.setState({
+                            ingredientes: ingrediente
+                        });
+                    });*/
                 }
             }
         });
