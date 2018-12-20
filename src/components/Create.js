@@ -54,6 +54,13 @@ class Create extends Component
                         masaPizza: ingrediente.idIngrediente,
                         imagenMasaPizza: ingrediente.nombreImagen
                     })
+                    /*await fetch('http://localhost:8080/precioIngrediente?idTamaño')
+                    .then(response => response.json())
+                    .then((ingrediente) => {
+                        this.setState({
+                            ingredientes: ingrediente
+                        });
+                    });*/
                 }
             }
         });
