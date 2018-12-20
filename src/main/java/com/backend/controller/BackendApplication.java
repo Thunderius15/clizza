@@ -154,12 +154,11 @@ public class BackendApplication {
 		return json.toString();
 	}
 	//Registro de usuario
-	@RequestMapping("/RagistrerInfo")
+	@RequestMapping("/RegistrerInfo")
 	String InfoData(@RequestParam("name")String name,
 			@RequestParam("email") String email,
 			@RequestParam("username")String username,
 			@RequestParam("phone")String phone,
-			@RequestParam("direction")String direction,
 			@RequestParam("password")String password){
 		
 		InputStream input = getClass().getClassLoader().getResourceAsStream("sql.properties");
