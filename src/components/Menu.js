@@ -8,7 +8,7 @@ class Menu extends Component
     render(){
         return(
             <div className="navbar">
-                <a href="/"><img src={require("../images/logo/clickzzaPNG.png")} className="logo"></img></a>
+                <NavLink to="/" activeClassName="hover"><img src={require("../images/logo/clickzzaPNG.png")} className="logo"></img></NavLink>
                 <NavLink exact to="/" activeClassName="active">Bienvenido</NavLink>
                 <NavLink to="/Login" activeClassName="active">Login</NavLink>
                 <NavLink to="/create" activeClassName="active">¡Arma tu Pizza!</NavLink>

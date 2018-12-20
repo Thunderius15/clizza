@@ -287,7 +287,7 @@ class Create extends Component
             <div className="row pagina">
                 <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 fondo">
                     <div className="row">
-                        <h3 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">Create your pizza</h3>
+                        <h3 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titulo">Create your pizza</h3>
                     </div>
                     <div className="row">
                         {tamaños}

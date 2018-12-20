@@ -37,6 +37,10 @@ class Contacto extends Component
                             .then(response => response.json())
                             .then((mensaje) =>{this.setState({comentarios: mensaje.contenido})
                                  });
+                            document.getElementById("Nombre").value="";
+                            document.getElementById("Apellidos").value="";
+                            document.getElementById("Correo").value="";
+                            document.getElementById("Comentarios").value="";
                         }else{
                             alert("Introduce tu mensaje.")
                                }

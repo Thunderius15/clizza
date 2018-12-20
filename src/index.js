@@ -7,16 +7,19 @@ import Inicio from './components/Inicio';
 import Contacto from './components/Contacto';
 import Registrer from './components/Registrer';
 import Create from './components/Create';
+import "./css/index.css";
 
 const routing = (
     <Router>
         <div>
             <Menu/>
-            <Route exact path="/" component={Inicio}/>
-            <Route path="/Login" component={Login}/>
-            <Route path="/contacto" component={Contacto}/>
-            <Route path="/registrer" component={Registrer}/>
-            <Route path="/create" component={Create}/>
+            <div className="contenido">
+                <Route exact path="/" component={Inicio}/>
+                <Route path="/Login" component={Login}/>
+                <Route path="/contacto" component={Contacto}/>
+                <Route path="/registrer" component={Registrer}/>
+                <Route path="/create" component={Create}/>
+            </div>
         </div>
     </Router>
 )

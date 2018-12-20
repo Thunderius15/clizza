@@ -89,7 +89,7 @@ class Menu extends Component
     <div className="main">
       <div className="one">
         <div className="register">
-          <h3>Create your account</h3>
+          <h3 className="titulo">Create your account</h3>
           <form id="reg-form">
             <div>
               <label htmlFor="name">Name</label>
