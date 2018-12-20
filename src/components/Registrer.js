@@ -10,6 +10,24 @@ class Menu extends Component
             contenido: ""
         }
         this.RegistrerInfo = this.RegistrerInfo.bind(this);
+        this.validarEmail = this.validarEmail.bind(this);
+        this.validarPassword = this.validarPassword.bind(this);
+    }
+
+    validarEmail(valor) {
+        if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+        validarPassword(valor) {
+        if (/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(valor))
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
     RegistrerInfo()
     {
@@ -17,26 +35,29 @@ class Menu extends Component
         var email = document.getElementById("email").value;
         var username = document.getElementById("username").value;
         var phone = document.getElementById("phone").value;
-        var direction = document.getElementById("direction").value;
         var password = document.getElementById("password").value;
         var password2 = document.getElementById("password-again").value;
 
-
         if (name){
             if (email){
-                if (username){
-                    if(phone){
-                        if(direction){
-                        if (password){
-                            if (password2){
-                                if (password === password2){
-                                    fetch('http://localhost:8080/RagistrerInfo?name='+name+'&email='+email+'&username='+username+'&phone='+phone+'&direction='+direction+'&password='+password)
-                .then(response => response.json())
-                .then((mensaje) => {
-                    this.setState({
-                        contenido: mensaje.contenido
-                    })
-                });
+                if(this.validarEmail(email)){
+                    if (username){
+                        if(phone){
+                            if (password){
+                                if (password2){
+                                    if (password === password2){
+                                        if(this.validarPassword(password)){
+                                        fetch('http://localhost:8080/RegistrerInfo?name='+name+'&email='+email+'&username='+username+'&phone='+phone+'&password='+password)
+                    .then(response => response.json())
+                    .then((mensaje) => {
+                        this.setState({
+                            contenido: mensaje.contenido
+                        })
+                        console.log(this.state.contenido)
+                    });
+                                        }else{
+                                            alert("Yo need at least \n min 8 characters and max 16 \n At least one capital letter \n At least one number")
+                                        }
                                     }else{
                                         alert("Passwords don't match")
                                     }
@@ -47,13 +68,13 @@ class Menu extends Component
                                 alert("password required")
                             }
                         }else{
-                            alert("direction required")
+                            alert("phone required")
                         }
                     }else{
-                        alert("phone required")
+                        alert("username required")
                     }
                 }else{
-                    alert("username required")
+                    alert("wrong email, please write again.")
                 }
             }else{
                 alert("email required")
@@ -85,10 +106,6 @@ class Menu extends Component
             <div>
               <label htmlFor="phone">Phone</label>
               <input type="text" id="phone" />
-            </div>
-            <div>
-              <label htmlFor="direction">Direction</label>
-              <input type="text" id="direction" />
             </div>
             <div>
               <label htmlFor="password">Password</label>
