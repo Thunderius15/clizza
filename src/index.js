@@ -7,6 +7,7 @@ import Inicio from './components/Inicio';
 import Contacto from './components/Contacto';
 import Registrer from './components/Registrer';
 import Create from './components/Create';
+import Sucursales from './components/Sucursales';
 import "./css/index.css";
 
 const routing = (
@@ -19,6 +20,7 @@ const routing = (
                 <Route path="/contacto" component={Contacto}/>
                 <Route path="/registrer" component={Registrer}/>
                 <Route path="/create" component={Create}/>
+                <Route path="/sucursales" component={Sucursales}/>
             </div>
         </div>
     </Router>
