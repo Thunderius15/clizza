@@ -23,12 +23,10 @@ class Create extends Component
         this.cambioSalsa=this.cambioSalsa.bind(this);
         this.cambioIngrediente=this.cambioIngrediente.bind(this);
         this.calculaPrecio=this.calculaPrecio.bind(this);
-        //this.calculaPrecioOtros=this.calculaPrecioOtros.bind(this);
     }
     async componentDidMount(){
         var masa=0;
         var salsa=0;
-        var precio=0;
         await fetch('http://localhost:8080/tamaños')
         .then(response => response.json())
         .then((tamaño) => {
@@ -54,13 +52,6 @@ class Create extends Component
                         masaPizza: ingrediente.idIngrediente,
                         imagenMasaPizza: ingrediente.nombreImagen
                     })
-                    /*await fetch('http://localhost:8080/precioIngrediente?idTamaño')
-                    .then(response => response.json())
-                    .then((ingrediente) => {
-                        this.setState({
-                            ingredientes: ingrediente
-                        });
-                    });*/
                 }
             }
         });
@@ -94,7 +85,6 @@ class Create extends Component
             masaPizza: e.target.value,
             imagenMasaPizza: nombreImagen
         });
-        //this.calculaPrecio();
     }
     cambioSalsa(e){
         var nombreImagen="logo/clizzaLOGOsolo.png";
@@ -107,7 +97,6 @@ class Create extends Component
             salsaPizza: e.target.value,
             imagenSalsaPizza: nombreImagen
         });
-        //this.calculaPrecio();
     }
     cambioIngrediente(){
         var arregloIngredientes = [];
@@ -131,7 +120,6 @@ class Create extends Component
             ingredientesPizza: arregloIngredientes,
             imagenesIngredientesPizza: arregloImagenesIngredientes
         })
-        //this.calculaPrecio();
     }
     async calculaPrecio(){
         var precios=[];
@@ -147,7 +135,6 @@ class Create extends Component
             precios.push(dato.precio);
         });
         var precio=0;
-        //this.calculaPrecioOtros();
         precios.forEach(function(valor){
             precio=precio+valor;
         })
@@ -155,42 +142,30 @@ class Create extends Component
             precioPizza: precio
         });
     }
-    /*async calculaPrecioOtros(){
-        var precios=[];
-        var tamañoPizza=this.state.tamañoPizza;
-        for(var i=0; i<this.state.ingredientesPizza; i++){
-        //await this.state.ingredientesPizza.forEach(function(ingrediente){
-            fetch('http://localhost:8080/precioIngrediente?idTamaño='+tamañoPizza+"&idIngrediente="+this.state.ingredientesPizza[i])
-            .then(response => response.json())
-            .then((dato) => {
-                precios.push(dato.precio);
-            });
-        //});
-        }
-        console.log(precios);
-    }*/
     render()
     {
         const tamaños = 
-            <fieldset className="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <fieldset className="form-group col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <legend>Tamaños</legend>
                 {this.state.tamaños.map((tamaño,i) => {
                     if(i===0){
                         return(
-                            <div>
-                                <input type="radio" name="tamaño" value={tamaño.idTamaños} onChange={this.cambioTamaño} defaultChecked/>
-                                <label key={i} class="form-check-label" htmlFor="tamaño">
-                                    {tamaño.tamaño}
+                            <div key={i} className="form-group">
+                                <label className="custom-control custom-radio">
+                                    <input type="radio" name="tamaño" value={tamaño.idTamaños} onChange={this.cambioTamaño} defaultChecked/>
+                                    <span className="custom-control-indicator"></span>
+                                    <span className="custom-control-description">{tamaño.tamaño}</span>
                                 </label>
                             </div>
                         );
                     }
                     else{
                         return(
-                            <div>
-                                <input type="radio" name="tamaño" value={tamaño.idTamaños} onChange={this.cambioTamaño}/>
-                                <label key={i} class="form-check-label" htmlFor="tamaño">
-                                    {tamaño.tamaño}
+                            <div key={i} className="form-group">
+                                <label className="custom-control custom-radio">
+                                    <input type="radio" name="tamaño" value={tamaño.idTamaños} onChange={this.cambioTamaño}/>
+                                    <span className="custom-control-indicator"></span>
+                                    <span className="custom-control-description">{tamaño.tamaño}</span>
                                 </label>
                             </div>
                         );
@@ -200,27 +175,29 @@ class Create extends Component
 
         var cont=0;
         const masas = 
-            <fieldset className="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <fieldset className="form-group col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <legend>Masas</legend>
                 {this.state.ingredientes.map((masa,i) => {
                     if(masa.categoriaIngrediente==="Masa"){
                         if(cont===0){
                             cont=1;
                             return(
-                                <div>
-                                    <input type="radio"name="masa" value={masa.idIngrediente} onChange={this.cambioMasa} defaultChecked/>
-                                    <label key={i} class="form-check-label" htmlFor="masa">
-                                        {masa.nombreIngrediente}
+                                <div key={i} className="form-group">
+                                    <label className="custom-control custom-radio">
+                                        <input type="radio" name="masa" value={masa.idIngrediente} onChange={this.cambioMasa} defaultChecked/>
+                                        <span className="custom-control-indicator"></span>
+                                        <span className="custom-control-description">{masa.nombreIngrediente}</span>
                                     </label>
                                 </div>
                             );
                         }
                         else{
                             return(
-                                <div>
-                                    <input type="radio" name="masa" value={masa.idIngrediente} onChange={this.cambioMasa}/>
-                                    <label key={i} class="form-check-label" htmlFor="masa">
-                                        {masa.nombreIngrediente}
+                                <div key={i} className="form-group">
+                                    <label className="custom-control custom-radio">
+                                        <input type="radio"name="masa" value={masa.idIngrediente} onChange={this.cambioMasa}/>
+                                        <span className="custom-control-indicator"></span>
+                                        <span className="custom-control-description">{masa.nombreIngrediente}</span>
                                     </label>
                                 </div>
                             );
@@ -231,27 +208,29 @@ class Create extends Component
 
         cont=0;
         const salsas = 
-            <fieldset className="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <fieldset className="form-group col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <legend>Salsas</legend>
                 {this.state.ingredientes.map((salsa,i) => {
                     if(salsa.categoriaIngrediente==="Salsa"){
                         if(cont===0){
                             cont=1;
                             return(
-                                <div>
-                                    <input type="radio" name="masa" value={salsa.idIngrediente} onChange={this.cambioSalsa} defaultChecked/>
-                                    <label key={i} class="form-check-label" htmlFor="salsa">
-                                        {salsa.nombreIngrediente}
+                                <div key={i} className="form-group">
+                                    <label className="custom-control custom-radio">
+                                        <input type="radio" name="salsa" value={salsa.idIngrediente} onChange={this.cambioSalsa} defaultChecked/>
+                                        <span className="custom-control-indicator"></span>
+                                        <span className="custom-control-description">{salsa.nombreIngrediente}</span>
                                     </label>
                                 </div>
                             );
                         }
                         else{
                             return(
-                                <div>
-                                    <input type="radio" name="masa" value={salsa.idIngrediente} onChange={this.cambioSalsa}/>
-                                    <label key={i} class="form-check-label" htmlFor="salsa">
-                                        {salsa.nombreIngrediente}
+                                <div key={i} className="form-group">
+                                    <label className="custom-control custom-radio">
+                                        <input type="radio" name="salsa" value={salsa.idIngrediente} className="custom-control-input" onChange={this.cambioSalsa}/>
+                                        <span className="custom-control-indicator"></span>
+                                        <span className="custom-control-description">{salsa.nombreIngrediente}</span>
                                     </label>
                                 </div>
                             );
@@ -265,15 +244,16 @@ class Create extends Component
             if(ingrediente.categoriaIngrediente!=="Masa" && ingrediente.categoriaIngrediente!=="Salsa" && ingrediente.categoriaIngrediente!==tipo){
                 tipo=ingrediente.categoriaIngrediente;
                 return(
-                    <fieldset key={i} className="form-group  col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <fieldset key={i} className="form-group  col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                         <legend>{tipo}</legend>
                         {this.state.ingredientes.map((otro,j) => {
                             if(otro.categoriaIngrediente===tipo){
                                 return(
-                                    <div>
-                                        <input type="checkbox" name="masa" value={otro.idIngrediente} className="ingrediente" onChange={this.cambioIngrediente}/>
-                                        <label key={j} class="form-check-label" htmlFor={otro.categoriaIngrediente}>
-                                            {otro.nombreIngrediente}
+                                    <div key={j} className="form-group">
+                                        <label className="custom-control custom-checkbox">
+                                            <input type="checkbox" name="masa" value={otro.idIngrediente} className="ingrediente" onChange={this.cambioIngrediente}/>
+                                            <span className="custom-control-indicator"></span>
+                                            <span className="custom-control-description">{otro.nombreIngrediente}</span>
                                         </label>
                                     </div>
                                 );
@@ -298,15 +278,17 @@ class Create extends Component
         });
         const pizza=
             <div>
+                <img src={require("../images/tabla.png")} className="imagenTabla"></img>
                 <img src={require("../images/"+nombreImagenMasa)} className="imagenPizza"></img>
                 <img src={require("../images/"+nombreImagenSalsa)} className="imagenPizza"></img>
                 {imagenesOtrosIngredientes}
             </div>;
-        const precioPizza = 
-            <div>{this.state.precioPizza}</div>
         return(
-            <div className="row">
-                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 fondo">
+            <div className="row pagina">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 fondo">
+                    <div className="row">
+                        <h3 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">Create your pizza</h3>
+                    </div>
                     <div className="row">
                         {tamaños}
                         {masas}
@@ -316,14 +298,14 @@ class Create extends Component
                         {otros}
                     </div>
                 </div>
-                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div className="row">
-                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div className="col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2">
                         </div>
-                        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8 pizza">
                             {pizza}
                         </div>
-                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div className="col-xs-0 col-sm-0 col-md-1 col-lg-2 col-xl-2">
                         </div>
                     </div>
                 </div>

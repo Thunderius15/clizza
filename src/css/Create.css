@@ -1,7 +1,19 @@
-.fondo{
-    background-color: #ffffff66;
+.row{
+    margin:0;
+    padding: 0;
+}
+.imagenTabla{
+    position: absolute;
+    width: 100%;
 }
 .imagenPizza{
     position: absolute;
-    height: 50vh;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.fondo {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
