@@ -15,16 +15,20 @@ class Create extends Component
             salsaPizza : 0,
             imagenSalsaPizza : "",
             ingredientesPizza : [],
-            imagenesIngredientesPizza : []
+            imagenesIngredientesPizza : [],
+            precioPizza : 0
         }
         this.cambioTamaño=this.cambioTamaño.bind(this);
         this.cambioMasa=this.cambioMasa.bind(this);
         this.cambioSalsa=this.cambioSalsa.bind(this);
         this.cambioIngrediente=this.cambioIngrediente.bind(this);
+        this.calculaPrecio=this.calculaPrecio.bind(this);
+        //this.calculaPrecioOtros=this.calculaPrecioOtros.bind(this);
     }
     async componentDidMount(){
         var masa=0;
         var salsa=0;
+        var precio=0;
         await fetch('http://localhost:8080/tamaños')
         .then(response => response.json())
         .then((tamaño) => {
@@ -39,10 +43,10 @@ class Create extends Component
                 ingredientes: ingrediente
             });
         });
-        this.setState({
+        await this.setState({
             tamañoPizza: this.state.tamaños[0].idTamaños
         })
-        this.state.ingredientes.map((ingrediente) => {
+        await this.state.ingredientes.map((ingrediente) => {
             if(masa===0){
                 if(ingrediente.categoriaIngrediente==="Masa"){
                     masa=1;
@@ -53,7 +57,7 @@ class Create extends Component
                 }
             }
         });
-        this.state.ingredientes.map((ingrediente) => {
+        await this.state.ingredientes.map((ingrediente) => {
             if(salsa===0){
                 if(ingrediente.categoriaIngrediente==="Salsa"){
                     salsa=1;
@@ -64,11 +68,13 @@ class Create extends Component
                 }
             }
         });
+        this.calculaPrecio();
     }
-    cambioTamaño(e){
-        this.setState({
+    async cambioTamaño(e){
+        await this.setState({
             tamañoPizza: e.target.value
         });
+        this.calculaPrecio();
     }
     cambioMasa(e){
         var nombreImagen="logo/clizzaLOGOsolo.png";
@@ -81,6 +87,7 @@ class Create extends Component
             masaPizza: e.target.value,
             imagenMasaPizza: nombreImagen
         });
+        //this.calculaPrecio();
     }
     cambioSalsa(e){
         var nombreImagen="logo/clizzaLOGOsolo.png";
@@ -93,6 +100,7 @@ class Create extends Component
             salsaPizza: e.target.value,
             imagenSalsaPizza: nombreImagen
         });
+        //this.calculaPrecio();
     }
     cambioIngrediente(){
         var arregloIngredientes = [];
@@ -116,7 +124,44 @@ class Create extends Component
             ingredientesPizza: arregloIngredientes,
             imagenesIngredientesPizza: arregloImagenesIngredientes
         })
+        //this.calculaPrecio();
     }
+    async calculaPrecio(){
+        var precios=[];
+        var tamañoPizza=this.state.tamañoPizza;
+        await fetch('http://localhost:8080/precioIngrediente?idTamaño='+tamañoPizza+"&idIngrediente="+this.state.masaPizza)
+        .then(response => response.json())
+        .then((dato) => {
+            precios.push(dato.precio);
+        });
+        await fetch('http://localhost:8080/precioIngrediente?idTamaño='+tamañoPizza+"&idIngrediente="+this.state.salsaPizza)
+        .then(response => response.json())
+        .then((dato) => {
+            precios.push(dato.precio);
+        });
+        var precio=0;
+        //this.calculaPrecioOtros();
+        precios.forEach(function(valor){
+            precio=precio+valor;
+        })
+        this.setState({
+            precioPizza: precio
+        });
+    }
+    /*async calculaPrecioOtros(){
+        var precios=[];
+        var tamañoPizza=this.state.tamañoPizza;
+        for(var i=0; i<this.state.ingredientesPizza; i++){
+        //await this.state.ingredientesPizza.forEach(function(ingrediente){
+            fetch('http://localhost:8080/precioIngrediente?idTamaño='+tamañoPizza+"&idIngrediente="+this.state.ingredientesPizza[i])
+            .then(response => response.json())
+            .then((dato) => {
+                precios.push(dato.precio);
+            });
+        //});
+        }
+        console.log(precios);
+    }*/
     render()
     {
         const tamaños = 
@@ -212,11 +257,6 @@ class Create extends Component
                 );
             }
         });
-        const elemento = this.state.ingredientesPizza.map((ingrediente,i) => {
-            return(
-                <div key={i}>{ingrediente}</div>
-            );
-        })
         var nombreImagenMasa="logo/clizzaLOGOsolo.png";
         if(this.state.imagenMasaPizza!==""){
             nombreImagenMasa=this.state.imagenMasaPizza;
@@ -236,6 +276,8 @@ class Create extends Component
                 <img src={require("../images/"+nombreImagenSalsa)}></img>
                 {imagenesOtrosIngredientes}
             </div>;
+        const precioPizza = 
+            <div>{this.state.precioPizza}</div>
         return(
             <div>
                 {tamaños}
@@ -243,6 +285,7 @@ class Create extends Component
                 {salsas}
                 {otros}
                 {pizza}
+                {precioPizza}
             </div> 
         );
     }
