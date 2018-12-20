@@ -63,6 +63,7 @@ class Contacto extends Component
             <div className="row">
                 <div className="col-xs-0 col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
                     <div className= "container col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                        <h3 className="encabezado">¡Queremos saber de ti, contáctanos!</h3>
                         <form>
                             <label htmlFor="Nombre">Nombre(s): </label>
                             <input type="text" id="Nombre" name="Nombre" placeholder="Nombre"/>

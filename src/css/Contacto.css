@@ -37,3 +37,10 @@ input[type=button]:hover {
     margin-left: 350px ;*/
     margin: 0;
 }
+.encabezado{
+    text-align: center;
+    color: whitesmoke;
+    background-color: orangered;
+    border-radius: 4px;
+    border: solid orange;
+}
