@@ -1,6 +1,4 @@
-@charset "UTF-8";
-
- /* Style inputs with type="text", select elements and textareas */
+/* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea,input[type=password] {
     width: 100%; /* Full width */
     padding: 12px; /* Some padding */ 
@@ -32,4 +30,4 @@ input[type=submit]:hover {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-} 
+}
