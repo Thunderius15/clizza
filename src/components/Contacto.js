@@ -33,9 +33,9 @@ class Contacto extends Component
                 if(Correo){
                     if(this.validarCorreo(Correo)){
                         if(Comentarios){
-                        fetch('http://localhost:8080/Comentario?Nombre='+Nombre+'&Apellidos='+Apellidos+'&Correo='+Correo+'&Comentarios='+Comentarios)
+                        fetch('http://localhost:8080/comentario?Nombre='+Nombre+'&Apellido='+Apellidos+'&Correo='+Correo+'&Comentarios='+Comentarios)
                             .then(response => response.json())
-                            .then((mensaje) =>{this.setState({contenido: mensaje.contenido})
+                            .then((mensaje) =>{this.setState({comentarios: mensaje.contenido})
                                  });
                         }else{
                             alert("Introduce tu mensaje.")
@@ -71,6 +71,7 @@ class Contacto extends Component
                     <textarea id="Comentarios" name="Comentarios" placeholder="¡Cuéntanos, con  gusto te leeremos!"></textarea>
 
                     <input type="button" value="Enviar" onClick={this.Comentario}/>
+                    <div>{this.state.comentarios}</div>
                 </form>
             </div>
         );
