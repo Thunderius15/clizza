@@ -26,7 +26,7 @@ CREATE TABLE `categorias` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,32 @@ LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` VALUES (481,'Salsa'),(482,'Queso'),(483,'Carne'),(484,'Vegetal'),(485,'Fruta'),(486,'Masa');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comentarios`
+--
+
+DROP TABLE IF EXISTS `comentarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `comentarios` (
+  `idComentario` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreCliente` varchar(100) NOT NULL,
+  `apellidoCliente` varchar(100) NOT NULL,
+  `emailCliente` varchar(100) NOT NULL,
+  `comentario` varchar(1000) NOT NULL,
+  PRIMARY KEY (`idComentario`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+LOCK TABLES `comentarios` WRITE;
+/*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -110,7 +136,7 @@ CREATE TABLE `ingredientes` (
   `activo` int(11) DEFAULT NULL,
   `nombreImagen` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idIngrediente`)
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +186,7 @@ CREATE TABLE `precioportamaño` (
   `idIngrediente` int(11) DEFAULT NULL,
   `precioSegunTamaño` int(11) DEFAULT NULL,
   PRIMARY KEY (`idPrecio`)
-) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +240,7 @@ CREATE TABLE `sucursal` (
   `telefono` varchar(15) DEFAULT NULL,
   `ubicacion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idSucursal`)
-) ENGINE=InnoDB AUTO_INCREMENT=904 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,4 +339,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-19 13:22:59
+-- Dump completed on 2018-12-20 14:17:39
