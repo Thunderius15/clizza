@@ -8,7 +8,6 @@ import Contacto from './components/Contacto';
 import Registrer from './components/Registrer';
 import Create from './components/Create';
 
-
 const routing = (
     <Router>
         <div>

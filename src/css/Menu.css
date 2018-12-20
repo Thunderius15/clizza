@@ -6,7 +6,6 @@
     /*position: fixed;*/
     bottom: 0;
     width: 100%;
-    margin-top: 130px;
     font-weight: bold;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     border-radius: 4px;
@@ -36,4 +35,8 @@
     color: white;
     font-weight: bold;
     border-radius: 4px;
+}
+
+.logo{
+    width: 10vw;
 }
