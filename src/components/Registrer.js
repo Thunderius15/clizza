@@ -1,59 +1,112 @@
 import React,{Component} from 'react';
 import '../css/Registrer.css';
-import {NavLink} from 'react-router-dom';
 
 class Menu extends Component
 {
+    constructor()
+    {
+        super();
+        this.state = {
+            contenido: ""
+        }
+        this.RegistrerInfo = this.RegistrerInfo.bind(this);
+    }
+    RegistrerInfo()
+    {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var phone = document.getElementById("phone").value;
+        var direction = document.getElementById("direction").value;
+        var password = document.getElementById("password").value;
+        var password2 = document.getElementById("password-again").value;
+
+
+        if (name){
+            if (email){
+                if (username){
+                    if(phone){
+                        if(direction){
+                        if (password){
+                            if (password2){
+                                if (password === password2){
+                                    fetch('http://localhost:8080/RagistrerInfo?name='+name+'&email='+email+'&username='+username+'&phone='+phone+'&direction='+direction+'&password='+password)
+                .then(response => response.json())
+                .then((mensaje) => {
+                    this.setState({
+                        contenido: mensaje.contenido
+                    })
+                });
+                                    }else{
+                                        alert("Passwords don't match")
+                                    }
+                                }else{
+                                    alert("password2 required")
+                                }
+                            }else{
+                                alert("password required")
+                            }
+                        }else{
+                            alert("direction required")
+                        }
+                    }else{
+                        alert("phone required")
+                    }
+                }else{
+                    alert("username required")
+                }
+            }else{
+                alert("email required")
+            }
+        }else{
+            alert ("Name required")
+        }
+    }
     render(){
         return(
-    <div class="main">
-      <div class="one">
-        <div class="register">
+<div className= "container">
+    <div className="main">
+      <div className="one">
+        <div className="register">
           <h3>Create your account</h3>
           <form id="reg-form">
             <div>
-              <label for="name">Name</label>
-              <input type="text" id="name" spellcheck="false" placeholder="Shridhar Deshmukh"/>
+              <label htmlFor="name">Name</label>
+              <input type="text" id="name" spellCheck="false" placeholder="Full Name"/>
             </div>
             <div>
-              <label for="email">Email</label>
-              <input type="text" id="email" spellcheck="false" placeholder="shridhardeshmukh@xyz.com"/>
+              <label htmlFor="email">Email</label>
+              <input type="text" id="email" spellCheck="false" placeholder="Example: myname@ilovepizza.com"/>
             </div>
             <div>
-              <label for="username">Username</label>
-              <input type="text" id="username" spellcheck="false" placeholder="shree33" />
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" spellCheck="false" placeholder="Example: myname123" />
             </div>
             <div>
-              <label for="password">Password</label>
+              <label htmlFor="phone">Phone</label>
+              <input type="text" id="phone" />
+            </div>
+            <div>
+              <label htmlFor="direction">Direction</label>
+              <input type="text" id="direction" />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
               <input type="password" id="password" />
             </div>
             <div>
-              <label for="password-again">Password Again</label>
+              <label htmlFor="password-again">Password Again</label>
               <input type="password" id="password-again" />
             </div>
             <div>
-              <label></label>
-              <input type="submit" value="Create Account" id="create-account" class="button"/>
+              <input type="button" value="Create Account" id="create-account" className="button" onClick={this.RegistrerInfo}/>
             </div>
           </form>
-          <div class="sep">
-            <span class="or">OR</span>
-          </div>
-          <div class="connect">
-            <div class="social-buttons facebook">
-              <a href="#">
-                <span>Facebook</span>
-              </a>
-            </div>
-            <div class="social-buttons twitter">
-              <a href="#">
-                <span>Twitter</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>
-      </div>
+      {this.state.contenido}
+    </div>
         );
     }
 }

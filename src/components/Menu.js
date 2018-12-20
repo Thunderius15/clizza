@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import '../css/Menu.css';
 import {NavLink} from 'react-router-dom';
 
+
 class Menu extends Component
 {
     render(){
@@ -13,8 +14,8 @@ class Menu extends Component
                 <NavLink to="/sucursales" activeClassName="active">Nuestras Sucursales</NavLink>
                 <NavLink to="/promociones" activeClassName="active"> Nuestras Promociones</NavLink>
                 <NavLink to="/contacto" activeClassName="active">Contacto</NavLink>
-                <NavLink to="/registrer" activeClassName="active">Reistro</NavLink>
-            </div> 
+                <NavLink to="/registrer" activeClassName="active">Registro</NavLink>
+            </div>
         );
     }
 }
