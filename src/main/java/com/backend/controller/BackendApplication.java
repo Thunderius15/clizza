@@ -208,6 +208,59 @@ public class BackendApplication {
 		objeto.addProperty("contenido", mensaje);
 		return objeto.toString();
 	}
+	//Registro de comentarios
+		@RequestMapping("/comentario")
+		String InfoData(@RequestParam("Nombre")String Nombre,
+				@RequestParam("Apellido") String Apellido,
+				@RequestParam("Correo")String Correo,
+				@RequestParam("Comentarios")String Comentarios){
+
+			InputStream input = getClass().getClassLoader().getResourceAsStream("sql.properties");
+			Properties props = new Properties();
+			Connection conn = null;
+			PreparedStatement pstmnt = null;
+			int datos = 0;
+			String mensaje ="";
+
+			try
+			{
+
+				props.load(input);
+				String insertComentario = props.getProperty("insertComentario");
+				Conector conector = Conector.getConector();
+				conn = conector.getConexion();
+				pstmnt = conn.prepareStatement(insertComentario);
+				pstmnt.setString(1, Nombre);
+				pstmnt.setString(2, Apellido);
+				pstmnt.setString(3, Correo);
+				pstmnt.setString(4, Comentarios);
+
+				datos = pstmnt.executeUpdate();
+				if(datos != 0)
+				{
+					mensaje = "¡Comentario enviado con éxito!";
+				}else
+				{
+					mensaje = "Intenta de nuevo";
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				try{
+					pstmnt.close();
+				}
+				catch(Exception ex){
+					ex.printStackTrace();
+				}
+			}
+			JsonObject objeto = new JsonObject();
+			objeto.addProperty("contenido", mensaje);
+			return objeto.toString();
+		}
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
