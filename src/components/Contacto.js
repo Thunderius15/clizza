@@ -10,7 +10,7 @@ class Contacto extends Component
     }
     prueba()
     {
-        alert("le diste click!!!");
+        alert("¡Gracias! Pronto te responderemos.");
     }
     render()
     {
@@ -23,14 +23,15 @@ class Contacto extends Component
                     <label htmlFor="Apellidos">Apellidos: </label>
                     <input type="text" id="Apellidos" name="Apellidos" placeholder="Apellidos"/>
 
-                    <label htmlFor="Colonia">Colonia</label>
-                    <input type="text" id="Colonia" name="Colonia" placeholder="Colonia"/>
+                    <label htmlFor="Correo">Correo Electrónico</label>
+                    <input type="text" id="Correo" name="Correo" placeholder="Correo Electrónico"/>
+
                     <label htmlFor="Comentarios">Comentarios: </label>
                     <textarea id="Comentarios" name="Comentarios" placeholder="¡Cuéntanos, con  gusto te leeremos!"></textarea>
 
                     <input type="submit" value="Enviar" onClick={this.prueba}/>
                 </form>
-            </div> 
+            </div>
         );
     }
 }

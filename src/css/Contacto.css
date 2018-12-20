@@ -3,7 +3,7 @@
  /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
     width: 100%; /* Full width */
-    padding: 12px; /* Some padding */ 
+    padding: 12px; /* Some padding */
     border: 1px solid #ccc; /* Gray border */
     border-radius: 4px; /* Rounded borders */
     box-sizing: border-box; /* Make sure that padding and width stays in place */
@@ -29,7 +29,10 @@ input[type=submit]:hover {
 
 /* Add a background color and some padding around the form */
 .container {
-    border-radius: 5px;
+    border-radius: 50px;
     background-color: #f2f2f2;
     padding: 20px;
-} 
+    margin-top: 50px;
+    max-width: 800px;
+    margin-left: 350px ;
+}

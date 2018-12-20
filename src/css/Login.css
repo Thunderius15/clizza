@@ -1,8 +1,4 @@
-html {
-  height: 100%;
-}
-
-body {
+#logincillo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,13 +33,15 @@ body {
 
 /* Login Form */
 .login-container {
+  padding:auto;
+  margin:auto;
+  text-align:center;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   width: 340px;
   height: auto;
-  padding: 5px;
   box-sizing: border-box;
 }
 
@@ -84,7 +82,7 @@ body {
   padding: 10px;
   margin: -10px -10px 25px -10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background: #009688;
+  background: orangered;
   font-family: 'Roboto', sans-serif;
   font-size: 1.3rem;
   color: #FAFAFA;

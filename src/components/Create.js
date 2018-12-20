@@ -54,6 +54,13 @@ class Create extends Component
                         masaPizza: ingrediente.idIngrediente,
                         imagenMasaPizza: ingrediente.nombreImagen
                     })
+                    /*await fetch('http://localhost:8080/precioIngrediente?idTamaño')
+                    .then(response => response.json())
+                    .then((ingrediente) => {
+                        this.setState({
+                            ingredientes: ingrediente
+                        });
+                    });*/
                 }
             }
         });
@@ -267,13 +274,13 @@ class Create extends Component
         }
         const imagenesOtrosIngredientes = this.state.imagenesIngredientesPizza.map((ingrediente,i)=>{
             return(
-                <img src={require("../images/"+ingrediente)} key={i}></img>
+                <img src={require("../images/"+ingrediente)} key={i} class="imagenPizza"></img>
             );
         });
         const pizza=
             <div>
-                <img src={require("../images/"+nombreImagenMasa)}></img>
-                <img src={require("../images/"+nombreImagenSalsa)}></img>
+                <img src={require("../images/"+nombreImagenMasa)} class="imagenPizza"></img>
+                <img src={require("../images/"+nombreImagenSalsa)} class="imagenPizza"></img>
                 {imagenesOtrosIngredientes}
             </div>;
         const precioPizza = 

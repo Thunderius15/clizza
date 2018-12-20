@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import '../css/Menu.css';
 import {NavLink} from 'react-router-dom';
 
+
 class Menu extends Component
 {
     render(){
@@ -14,7 +15,7 @@ class Menu extends Component
                 <NavLink to="/promociones" activeClassName="active"> Nuestras Promociones</NavLink>
                 <NavLink to="/contacto" activeClassName="active">Contacto</NavLink>
                 <NavLink to="/registrer" activeClassName="active">Registro</NavLink>
-            </div> 
+            </div>
         );
     }
 }

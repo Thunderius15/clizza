@@ -1,0 +1,32 @@
+h1, p{
+    color:green;
+    text-align:center;
+}
+body{
+     background-image: url("../images/pizza6.png");
+     background-size: cover;
+     position: relative;
+    }
+.photos{
+    display: flex;
+    justify-content:center;
+    }
+.dos{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+h3{
+    color: whitesmoke;
+    background-color: orangered;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding: 5px;
+    border: 2px solid orange;
+    border-radius:4px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    text-align: center;
+
+}
+
+

@@ -7,17 +7,17 @@ class Login extends Component
         {
             return(
             <div>
-                <div className="login-container">
+                <div id="logincillo" className="login-container">
                 <section className="login" id="login">
                     <header>
-                    <h2>Application Name</h2>
-                    <h4>Login</h4>
+                    <h2>Introduce tus datos</h2>
+                    <h4>Clizza</h4>
                     </header>
                     <form className="login-form" action="#" method="post">
                     <input type="text" className="login-input" placeholder="User" required autoFocus/>
                     <input type="password" className="login-input" placeholder="Password" required/>
                     <div className="submit-container">
-                        <button type="submit" className="login-button">SIGN IN</button>
+                        <button type="submit" className="login-button">Inicia Sesión</button>
                     </div>
                     </form>
                 </section>
