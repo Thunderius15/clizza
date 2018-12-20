@@ -6,11 +6,52 @@ class Contacto extends Component
     constructor()
     {
         super();
-        this.prueba=this.prueba.bind(this);
+        this.state = {
+            comentarios:""
     }
-    prueba()
+
+    this.Comentario = this.Comentario.bind(this);
+    this.validarEmail = this.validarCorreo.bind(this);
+}
+
+    validarCorreo(valor) {
+        if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    Comentario()
     {
-        alert("¡Gracias! Pronto te responderemos.");
+        var Nombre = document.getElementById("Nombre").value;
+        var Apellidos = document.getElementById("Apellidos").value;
+        var Correo = document.getElementById("Correo").value;
+        var Comentarios = document.getElementById("Comentarios").value;
+
+        if(Nombre){
+            if(Apellidos){
+                if(Correo){
+                    if(this.validarCorreo(Correo)){
+                        if(Comentarios){
+                        fetch('http://localhost:8080/Comentario?Nombre='+Nombre+'&Apellidos='+Apellidos+'&Correo='+Correo+'&Comentarios='+Comentarios)
+                            .then(response => response.json())
+                            .then((mensaje) =>{this.setState({contenido: mensaje.contenido})
+                                 });
+                        }else{
+                            alert("Introduce tu mensaje.")
+                               }
+                    }else{
+                        alert("E-mail invalido")
+                         }
+                }else{
+                     alert("Correo requerido")
+                    }
+            }else{
+                alert("Apellidos requerido")
+                    }
+        }else{
+            alert("Nombre requerido")
+                    }
     }
     render()
     {
@@ -29,7 +70,7 @@ class Contacto extends Component
                     <label htmlFor="Comentarios">Comentarios: </label>
                     <textarea id="Comentarios" name="Comentarios" placeholder="¡Cuéntanos, con  gusto te leeremos!"></textarea>
 
-                    <input type="submit" value="Enviar" onClick={this.prueba}/>
+                    <input type="button" value="Enviar" onClick={this.Comentario}/>
                 </form>
             </div>
         );
