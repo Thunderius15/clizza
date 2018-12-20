@@ -85,45 +85,49 @@ class Menu extends Component
     }
     render(){
         return(
-<div className= "container">
-    <div className="main">
-      <div className="one">
-        <div className="register">
-          <h3 className="titulo">Create your account</h3>
-          <form id="reg-form">
-            <div>
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" spellCheck="false" placeholder="Full Name"/>
+            <div className="row">
+                <div className="col-xs-0 col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
+                <div className= "container col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                    <div className="main">
+                        <div className="one">
+                            <div className="register">
+                                <h3 className="titulo">Create your account</h3>
+                                <form id="reg-form">
+                                    <div>
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" id="name" spellCheck="false" placeholder="Full Name"/>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="email">Email</label>
+                                        <input type="text" id="email" spellCheck="false" placeholder="Example: myname@ilovepizza.com"/>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="username">Username</label>
+                                        <input type="text" id="username" spellCheck="false" placeholder="Example: myname123" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="phone">Phone</label>
+                                        <input type="text" id="phone" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="password">Password</label>
+                                        <input type="password" id="password" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="password-again">Password Again</label>
+                                        <input type="password" id="password-again" />
+                                    </div>
+                                    <div>
+                                        <input type="button" value="Create Account" id="create-account" className="button" onClick={this.RegistrerInfo}/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {this.state.contenido}
+                </div>
+                <div className="col-xs-0 col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input type="text" id="email" spellCheck="false" placeholder="Example: myname@ilovepizza.com"/>
-            </div>
-            <div>
-              <label htmlFor="username">Username</label>
-              <input type="text" id="username" spellCheck="false" placeholder="Example: myname123" />
-            </div>
-            <div>
-              <label htmlFor="phone">Phone</label>
-              <input type="text" id="phone" />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" />
-            </div>
-            <div>
-              <label htmlFor="password-again">Password Again</label>
-              <input type="password" id="password-again" />
-            </div>
-            <div>
-              <input type="button" value="Create Account" id="create-account" className="button" onClick={this.RegistrerInfo}/>
-            </div>
-          </form>
-          </div>
-        </div>
-      </div>
-      {this.state.contenido}
-    </div>
         );
     }
 }

@@ -60,23 +60,27 @@ class Contacto extends Component
     render()
     {
         return(
-            <div className="container">
-                <form>
-                    <label htmlFor="Nombre">Nombre(s): </label>
-                    <input type="text" id="Nombre" name="Nombre" placeholder="Nombre"/>
+            <div className="row">
+                <div className="col-xs-0 col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
+                    <div className= "container col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                        <form>
+                            <label htmlFor="Nombre">Nombre(s): </label>
+                            <input type="text" id="Nombre" name="Nombre" placeholder="Nombre"/>
 
-                    <label htmlFor="Apellidos">Apellidos: </label>
-                    <input type="text" id="Apellidos" name="Apellidos" placeholder="Apellidos"/>
+                            <label htmlFor="Apellidos">Apellidos: </label>
+                            <input type="text" id="Apellidos" name="Apellidos" placeholder="Apellidos"/>
 
-                    <label htmlFor="Correo">Correo Electrónico</label>
-                    <input type="text" id="Correo" name="Correo" placeholder="Correo Electrónico"/>
+                            <label htmlFor="Correo">Correo Electrónico</label>
+                            <input type="text" id="Correo" name="Correo" placeholder="Correo Electrónico"/>
 
-                    <label htmlFor="Comentarios">Comentarios: </label>
-                    <textarea id="Comentarios" name="Comentarios" placeholder="¡Cuéntanos, con  gusto te leeremos!"></textarea>
+                            <label htmlFor="Comentarios">Comentarios: </label>
+                            <textarea id="Comentarios" name="Comentarios" placeholder="¡Cuéntanos, con  gusto te leeremos!"></textarea>
 
-                    <input type="button" value="Enviar" onClick={this.Comentario}/>
-                    <div>{this.state.comentarios}</div>
-                </form>
+                            <input type="button" value="Enviar" onClick={this.Comentario}/>
+                            <div>{this.state.comentarios}</div>
+                        </form>
+                    </div>
+                <div className="col-xs-0 col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
             </div>
         );
     }
