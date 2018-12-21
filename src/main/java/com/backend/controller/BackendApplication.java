@@ -167,27 +167,47 @@ public class BackendApplication {
 		PreparedStatement pstmnt = null;
 		int datos = 0;
 		String mensaje ="";
+		
+		ResultSet RevisarUsuario = null;
 
 		try
 		{
 
 			props.load(input);
 			String InsertRegistro = props.getProperty("InsertRegistro");
+			String RevisarUsuario2 = props.getProperty("RevisarUsuario");
+			
 			Conector conector = Conector.getConector();
 			conn = conector.getConexion();
-			pstmnt = conn.prepareStatement(InsertRegistro);
-			pstmnt.setString(1, name);
-			pstmnt.setString(2, email);
-			pstmnt.setString(3, password);
-			pstmnt.setString(4, phone);
+			pstmnt = conn.prepareStatement(RevisarUsuario2);
+			pstmnt.setString(1, email);
+			pstmnt.setString(2, name);
+			RevisarUsuario = pstmnt.executeQuery();
+			if(RevisarUsuario.next())				
+			{
+				
+				if(RevisarUsuario.getInt("resultado") == 0)
+				{
+					pstmnt = conn.prepareStatement(InsertRegistro);
+					pstmnt.setString(1, name);
+					pstmnt.setString(2, email);
+					pstmnt.setString(3, password);
+					pstmnt.setString(4, phone);
 
-			datos = pstmnt.executeUpdate();
-			if(datos != 0)
+					datos = pstmnt.executeUpdate();
+					if(datos != 0)
+					{
+						mensaje = "usuario registrado al cien";
+					}else
+					{
+						mensaje = "tronó como ejote";
+					}
+				}else {
+					mensaje = "usuario o correo en existencia";
+				}
+			}else 
 			{
-				mensaje = "usuario registrado al cien";
-			}else
-			{
-				mensaje = "tronó como ejote";
+				mensaje = "No es posible conectarse a la base de datos";
 			}
 		}
 		catch(Exception e)
